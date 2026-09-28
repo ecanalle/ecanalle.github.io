@@ -1,9 +1,14 @@
+Aqui está o **`index.html`** completo e atualizado, pronto para você copiar e colar direto no seu projeto:
+
+```html
 <!doctype html>
 <html lang="en">
     <head>
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <title>Eric Canalle — iOS Developer</title>
+        <meta name="description" content="Eric Canalle — Native iOS Developer specializing in Swift, SwiftUI, and Xcode." />
+        
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
         <link
@@ -39,6 +44,7 @@
                 <button
                     class="theme-toggle"
                     id="theme-toggle"
+                    aria-label="Toggle theme"
                     title="Toggle theme"
                 >
                     <svg
@@ -87,7 +93,7 @@
                     that make sense.
                 </p>
                 <div class="hero-actions">
-                    <a href="#projects" class="btn-primary">
+                    <a href="https://github.com/ecanalle" target="_blank" rel="noopener noreferrer" class="btn-primary">
                         <svg
                             width="14"
                             height="14"
@@ -98,7 +104,7 @@
                                 d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"
                             />
                         </svg>
-                        <span>View GitHub Projects</span>
+                        <span>View GitHub Profile</span>
                     </a>
                     <a href="#contact" class="btn-ghost">Get In Touch</a>
                 </div>
@@ -218,13 +224,15 @@
             <div class="section-inner">
                 <div class="section-label fade-up">03 / projects</div>
                 <h2 class="section-title fade-up">GitHub Repositories</h2>
-                <p class="section-sub fade-up">Latest projects from GitHub.</p>
+                <p class="section-sub fade-up">
+                    Check out my latest open-source projects, documentation, and code bases directly on GitHub.
+                </p>
 
                 <div class="project-connect fade-up">
                     <div class="project-avatar" id="gh-avatar">
                         <img
                             src="https://github.com/ecanalle.png"
-                            alt="Eric"
+                            alt="Eric Canalle"
                             onerror="
                                 this.src =
                                     'data:image/svg+xml,<svg xmlns=\'http://www.w3.org/2000/svg\' viewBox=\'0 0 40 40\'><rect fill=\'%231d1d1f\' width=\'40\' height=\'40\'/><text x=\'50%25\' y=\'50%25\' dominant-baseline=\'middle\' text-anchor=\'middle\' font-size=\'20\' fill=\'%230071e3\'>E</text></svg>'
@@ -236,12 +244,23 @@
                         <div class="project-sub">github.com/ecanalle</div>
                     </div>
                     <div class="project-status live" id="gh-status">
-                        connected
+                        active
                     </div>
                 </div>
 
-                <div id="repos-container">
-                    <div class="repos-loading">Loading repositories...</div>
+                <div class="projects-cta fade-up" style="margin-top: 2rem; text-align: center;">
+                    <a
+                        href="https://github.com/ecanalle"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        class="btn-primary"
+                        style="display: inline-flex; align-items: center; gap: 10px; padding: 1rem 2rem; font-size: 1.05rem;"
+                    >
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/>
+                        </svg>
+                        <span>Explore All Repositories on GitHub ↗</span>
+                    </a>
                 </div>
             </div>
         </section>
@@ -259,6 +278,7 @@
                             <a
                                 href="https://linkedin.com/in/ecanalle"
                                 target="_blank"
+                                rel="noopener noreferrer"
                                 class="contact-link"
                             >
                                 <div class="contact-link-icon">💼</div>
@@ -274,6 +294,7 @@
                             <a
                                 href="https://github.com/ecanalle"
                                 target="_blank"
+                                rel="noopener noreferrer"
                                 class="contact-link"
                             >
                                 <div class="contact-link-icon">
@@ -325,3 +346,5 @@
         <script src="script.js"></script>
     </body>
 </html>
+
+```
