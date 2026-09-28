@@ -73,8 +73,3 @@ document.addEventListener('DOMContentLoaded', () => {
       });
   }
 });
-});
-});
-});
-});
-});
