@@ -1,5 +1,5 @@
 document.addEventListener('DOMContentLoaded', () => {
-  // ── 1. THEME TOGGLE & PERSISTENCE (Não faz fetch nem recarrega repos) ──
+  // ── 1. THEME TOGGLE & PERSISTENCE ──
   const themeToggleBtn = document.getElementById('theme-toggle');
   const html = document.documentElement;
 
@@ -36,40 +36,40 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-    // ── 2. DYNAMIC REPOSITORIES LOAD (repos.json) ──
-      const reposGrid = document.getElementById('repos-grid');
-      if (reposGrid) {
-        fetch('repos.json')
-          .then(response => {
-            if (!response.ok) throw new Error('HTTP status ' + response.status);
-            return response.json();
-          })
-          .then(data => {
-            // Acessa a chave "repos" dentro do JSON
-            const repos = data.repos || data;
+  // ── 2. DYNAMIC REPOSITORIES LOAD (repos.json) ──
+  const reposGrid = document.getElementById('repos-grid');
+  if (reposGrid) {
+    fetch('repos.json')
+      .then(response => {
+        if (!response.ok) throw new Error('HTTP status ' + response.status);
+        return response.json();
+      })
+      .then(data => {
+        // Acessa a chave "repos" dentro do repos.json
+        const repos = data.repos || data;
 
-            if (!Array.isArray(repos) || repos.length === 0) {
-              reposGrid.innerHTML = '<p>Nenhum repositório encontrado.</p>';
-              return;
-            }
+        if (!Array.isArray(repos) || repos.length === 0) {
+          reposGrid.innerHTML = '<p>Nenhum repositório encontrado.</p>';
+          return;
+        }
 
-            reposGrid.innerHTML = repos.map(repo => `
-              <a href="${repo.html_url}" target="_blank" class="repo-card">
-                <div class="repo-header">
-                  <span class="repo-name">${repo.name}</span>
-                </div>
-                <p class="repo-desc">${repo.description || 'Sem descrição informada.'}</p>
-                <div class="repo-meta">
-                  ${repo.language ? `<span><span class="lang-dot"></span>${repo.language}</span>` : ''}
-                  <span>★ ${repo.stargazers_count || 0}</span>
-                </div>
-              </a>
-            `).join('');
-          })
-          .catch(err => {
-            console.error('Erro ao ler repos.json:', err);
-            reposGrid.innerHTML = '<p>Não foi possível carregar os repositórios.</p>';
-          });
-      }
+        reposGrid.innerHTML = repos.map(repo => `
+          <a href="${repo.html_url}" target="_blank" class="repo-card">
+            <div class="repo-header">
+              <span class="repo-name">${repo.name}</span>
+            </div>
+            <p class="repo-desc">${repo.description || 'Sem descrição informada.'}</p>
+            <div class="repo-meta">
+              ${repo.language ? `<span><span class="lang-dot"></span>${repo.language}</span>` : ''}
+              <span>★ ${repo.stargazers_count || 0}</span>
+            </div>
+          </a>
+        `).join('');
+      })
+      .catch(err => {
+        console.error('Erro ao ler repos.json:', err);
+        reposGrid.innerHTML = '<p>Não foi possível carregar os repositórios.</p>';
+      });
+  }
 });
 });
