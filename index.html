@@ -1,0 +1,327 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Eric Canalle — iOS Developer</title>
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+        <link
+            href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Mono:wght@300;400;500&display=swap"
+            rel="stylesheet"
+        />
+        <script>
+            const savedTheme = localStorage.getItem("theme");
+            let theme = savedTheme;
+            if (!theme) {
+                const prefersDark = window.matchMedia(
+                    "(prefers-color-scheme: dark)",
+                ).matches;
+                theme = prefersDark ? "dark" : "light";
+                localStorage.setItem("theme", theme);
+            }
+            if (theme === "dark") {
+                document.documentElement.classList.add("dark-mode");
+            }
+        </script>
+        <link rel="stylesheet" href="styles.css" />
+    </head>
+    <body>
+        <nav>
+            <div class="nav-logo">Eric<span>.dev</span></div>
+            <ul class="nav-links">
+                <li><a href="#about">about</a></li>
+                <li><a href="#skills">skills</a></li>
+                <li><a href="#projects">projects</a></li>
+                <li><a href="#contact" class="nav-cta">contact</a></li>
+            </ul>
+            <div class="nav-controls">
+                <button
+                    class="theme-toggle"
+                    id="theme-toggle"
+                    title="Toggle theme"
+                >
+                    <svg
+                        class="theme-icon"
+                        width="18"
+                        height="18"
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        stroke="currentColor"
+                        stroke-width="2"
+                    >
+                        <circle cx="12" cy="12" r="5"></circle>
+                        <line x1="12" y1="1" x2="12" y2="3"></line>
+                        <line x1="12" y1="21" x2="12" y2="23"></line>
+                        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                        <line
+                            x1="18.36"
+                            y1="18.36"
+                            x2="19.78"
+                            y2="19.78"
+                        ></line>
+                        <line x1="1" y1="12" x2="3" y2="12"></line>
+                        <line x1="21" y1="12" x2="23" y2="12"></line>
+                        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                    </svg>
+                </button>
+            </div>
+        </nav>
+
+        <section id="hero">
+            <div class="hero-glow"></div>
+            <div class="hero-glow2"></div>
+            <div class="hero-inner">
+                <div class="hero-tag">iOS Developer</div>
+                <h1 class="hero-name">
+                    Eric<br /><span class="accent">Canalle</span>
+                </h1>
+                <div class="hero-role">
+                    // Swift · SwiftUI · iOS Development
+                </div>
+                <p class="hero-desc">
+                    iOS developer building native apps with
+                    <strong>Swift, SwiftUI and Xcode</strong>. Focused on the
+                    Apple ecosystem, modern architectures and creating products
+                    that make sense.
+                </p>
+                <div class="hero-actions">
+                    <a href="#projects" class="btn-primary">
+                        <svg
+                            width="14"
+                            height="14"
+                            viewBox="0 0 24 24"
+                            fill="currentColor"
+                        >
+                            <path
+                                d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"
+                            />
+                        </svg>
+                        <span>View GitHub Projects</span>
+                    </a>
+                    <a href="#contact" class="btn-ghost">Get In Touch</a>
+                </div>
+                <div class="hero-stats">
+                    <div>
+                        <div class="stat-num">Swift</div>
+                        <div class="stat-label">Primary Language</div>
+                    </div>
+                    <div>
+                        <div class="stat-num">3x</div>
+                        <div class="stat-label">Apple Dev Certifications</div>
+                    </div>
+                    <div>
+                        <div class="stat-num">iOS</div>
+                        <div class="stat-label">Full Focus</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="about">
+            <div class="section-inner">
+                <div class="sobre-text fade-up">
+                    <div class="section-label">01 / about</div>
+                    <h2 class="section-title">Building native iOS apps</h2>
+                    <p>
+                        iOS developer focused on the Apple ecosystem. I build
+                        native applications with
+                        <strong>Swift, SwiftUI and Xcode</strong>, with a
+                        foundation in modern architectures and a practical
+                        understanding of real user needs.
+                    </p>
+                    <div class="swift-logo-block">
+                        <div class="swift-icon">🦅</div>
+                        <div>
+                            <div class="swift-text-main">
+                                Swift · SwiftUI · UIKit
+                            </div>
+                            <div class="swift-text-sub">
+                                Primary focus · Modern development
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="skills">
+            <div class="section-inner">
+                <div class="section-label fade-up">02 / skills</div>
+                <h2 class="section-title fade-up">Core Stack</h2>
+                <p class="section-sub fade-up">
+                    Apple ecosystem and modern iOS development.
+                </p>
+                <div class="skills-grid">
+                    <div class="skill-card fade-up">
+                        <div class="skill-icon">🦅</div>
+                        <div class="skill-name">Swift 5 &amp; 6</div>
+                        <div class="skill-desc">
+                            LinkedIn Learning certifications completed. Primary
+                            language for iOS/macOS development.
+                        </div>
+                        <div class="skill-tags">
+                            <span class="skill-tag">Swift 5 Certified</span>
+                            <span class="skill-tag">Swift 6 Certified</span>
+                            <span class="skill-tag">Optionals</span>
+                            <span class="skill-tag">Protocols</span>
+                        </div>
+                    </div>
+                    <div class="skill-card fade-up">
+                        <div class="skill-icon">📱</div>
+                        <div class="skill-name">Xcode 15 &amp; SwiftUI</div>
+                        <div class="skill-desc">
+                            Xcode 15 certification completed. Building modern
+                            declarative interfaces for the Apple ecosystem.
+                        </div>
+                        <div class="skill-tags">
+                            <span class="skill-tag">Xcode 15 Certified</span>
+                            <span class="skill-tag">SwiftUI</span>
+                            <span class="skill-tag">UIKit</span>
+                            <span class="skill-tag">Auto Layout</span>
+                        </div>
+                    </div>
+                    <div class="skill-card fade-up">
+                        <div class="skill-icon">🏗</div>
+                        <div class="skill-name">iOS Architectures</div>
+                        <div class="skill-desc">
+                            Design patterns for scalable and maintainable apps,
+                            with focus on Swift ecosystem.
+                        </div>
+                        <div class="skill-tags">
+                            <span class="skill-tag">MVC</span>
+                            <span class="skill-tag">MVVM</span>
+                            <span class="skill-tag">Delegate</span>
+                            <span class="skill-tag">Combine</span>
+                        </div>
+                    </div>
+                    <div class="skill-card fade-up">
+                        <div class="skill-icon">🌐</div>
+                        <div class="skill-name">APIs &amp; Networking</div>
+                        <div class="skill-desc">
+                            Consuming REST APIs, JSON handling and integration
+                            with external services in iOS apps.
+                        </div>
+                        <div class="skill-tags">
+                            <span class="skill-tag">URLSession</span>
+                            <span class="skill-tag">Codable</span>
+                            <span class="skill-tag">Async/Await</span>
+                            <span class="skill-tag">REST</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="projects">
+            <div class="section-inner">
+                <div class="section-label fade-up">03 / projects</div>
+                <h2 class="section-title fade-up">GitHub Repositories</h2>
+                <p class="section-sub fade-up">Latest projects from GitHub.</p>
+
+                <div class="project-connect fade-up">
+                    <div class="project-avatar" id="gh-avatar">
+                        <img
+                            src="https://github.com/ecanalle.png"
+                            alt="Eric"
+                            onerror="
+                                this.src =
+                                    'data:image/svg+xml,<svg xmlns=\'http://www.w3.org/2000/svg\' viewBox=\'0 0 40 40\'><rect fill=\'%231d1d1f\' width=\'40\' height=\'40\'/><text x=\'50%25\' y=\'50%25\' dominant-baseline=\'middle\' text-anchor=\'middle\' font-size=\'20\' fill=\'%230071e3\'>E</text></svg>'
+                            "
+                        />
+                    </div>
+                    <div class="project-info">
+                        <div class="project-username">ecanalle</div>
+                        <div class="project-sub">github.com/ecanalle</div>
+                    </div>
+                    <div class="project-status live" id="gh-status">
+                        connected
+                    </div>
+                </div>
+
+                <div id="repos-container">
+                    <div class="repos-loading">Loading repositories...</div>
+                </div>
+            </div>
+        </section>
+
+        <section id="contact">
+            <div class="section-inner">
+                <div class="contato-grid">
+                    <div class="fade-up">
+                        <div class="section-label">04 / contact</div>
+                        <h2 class="section-title">Let's<br />talk?</h2>
+                        <p class="section-sub" style="margin-bottom: 1rem">
+                            Open to opportunities in iOS. Reach out!
+                        </p>
+                        <div class="contact-links">
+                            <a
+                                href="https://linkedin.com/in/ecanalle"
+                                target="_blank"
+                                class="contact-link"
+                            >
+                                <div class="contact-link-icon">💼</div>
+                                <div class="contact-link-text">
+                                    <span class="contact-link-label"
+                                        >LinkedIn</span
+                                    >
+                                    <span class="contact-link-value"
+                                        >linkedin.com/in/ecanalle</span
+                                    >
+                                </div>
+                            </a>
+                            <a
+                                href="https://github.com/ecanalle"
+                                target="_blank"
+                                class="contact-link"
+                            >
+                                <div class="contact-link-icon">
+                                    <svg
+                                        width="18"
+                                        height="18"
+                                        viewBox="0 0 24 24"
+                                        fill="currentColor"
+                                    >
+                                        <path
+                                            d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"
+                                        />
+                                    </svg>
+                                </div>
+                                <div class="contact-link-text">
+                                    <span class="contact-link-label"
+                                        >GitHub</span
+                                    >
+                                    <span class="contact-link-value"
+                                        >github.com/ecanalle</span
+                                    >
+                                </div>
+                            </a>
+                            <a
+                                href="mailto:eric.canalle@icloud.com"
+                                class="contact-link"
+                            >
+                                <div class="contact-link-icon">✉️</div>
+                                <div class="contact-link-text">
+                                    <span class="contact-link-label"
+                                        >E-mail</span
+                                    >
+                                    <span class="contact-link-value"
+                                        >eric.canalle@icloud.com</span
+                                    >
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <footer>
+            <p>© 2026 Eric Canalle</p>
+            <p>Made with Swift in heart 🦅</p>
+        </footer>
+
+        <script src="script.js"></script>
+    </body>
+</html>
