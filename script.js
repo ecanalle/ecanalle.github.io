@@ -39,13 +39,15 @@ document.addEventListener('DOMContentLoaded', () => {
   // ── 2. DYNAMIC REPOSITORIES LOAD (repos.json) ──
   const reposGrid = document.getElementById('repos-grid');
   if (reposGrid) {
-    fetch('repos.json')
+    fetch('./repos.json')
       .then(response => {
-        if (!response.ok) throw new Error('HTTP status ' + response.status);
+        if (!response.ok) {
+          throw new Error(`Status HTTP ${response.status}`);
+        }
         return response.json();
       })
       .then(data => {
-        const repos = data.repos || data;
+        const repos = Array.isArray(data) ? data : (data && data.repos);
 
         if (!Array.isArray(repos) || repos.length === 0) {
           reposGrid.innerHTML = '<p>Nenhum repositório encontrado.</p>';
@@ -67,7 +69,12 @@ document.addEventListener('DOMContentLoaded', () => {
       })
       .catch(err => {
         console.error('Erro ao ler repos.json:', err);
-        reposGrid.innerHTML = '<p>Não foi possível carregar os repositórios.</p>';
+        reposGrid.innerHTML = `<p style="color: #fa7343;">Erro ao carregar repositórios: ${err.message}</p>`;
       });
   }
+});
+});
+});
+});
+});
 });
