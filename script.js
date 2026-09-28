@@ -45,7 +45,6 @@ document.addEventListener('DOMContentLoaded', () => {
         return response.json();
       })
       .then(data => {
-        // Acessa a chave "repos" dentro do repos.json
         const repos = data.repos || data;
 
         if (!Array.isArray(repos) || repos.length === 0) {
@@ -71,5 +70,4 @@ document.addEventListener('DOMContentLoaded', () => {
         reposGrid.innerHTML = '<p>Não foi possível carregar os repositórios.</p>';
       });
   }
-});
 });
