@@ -1,12 +1,18 @@
 document.addEventListener('DOMContentLoaded', () => {
+  // ── 1. THEME TOGGLE & PERSISTENCE ──
   const themeToggleBtn = document.getElementById('theme-toggle');
   const html = document.documentElement;
 
-  // Detecta preferência salva ou do sistema operacional
-  const savedTheme = localStorage.getItem('theme');
+  let savedTheme = null;
+  try {
+    savedTheme = localStorage.getItem('theme');
+  } catch (e) {
+    console.warn('localStorage is unavailable:', e);
+  }
+
   const systemPrefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
 
-  if (savedTheme) {
+  if (savedTheme === 'dark-mode' || savedTheme === 'light-mode') {
     html.classList.add(savedTheme);
   } else if (systemPrefersDark) {
     html.classList.add('dark-mode');
@@ -16,18 +22,65 @@ document.addEventListener('DOMContentLoaded', () => {
 
   if (themeToggleBtn) {
     themeToggleBtn.addEventListener('click', () => {
-      const isDark = html.classList.contains('dark-mode') ||
-                     (!html.classList.contains('light-mode') && systemPrefersDark);
+      const isDark = html.classList.contains('dark-mode');
 
       if (isDark) {
         html.classList.remove('dark-mode');
         html.classList.add('light-mode');
-        localStorage.setItem('theme', 'light-mode');
+        try { localStorage.setItem('theme', 'light-mode'); } catch (e) {}
       } else {
         html.classList.remove('light-mode');
         html.classList.add('dark-mode');
-        localStorage.setItem('theme', 'dark-mode');
+        try { localStorage.setItem('theme', 'dark-mode'); } catch (e) {}
       }
     });
+  }
+
+  // ── 2. SCROLL ANIMATION OBSERVER (.fade-up) ──
+  const fadeElements = document.querySelectorAll('.fade-up');
+  
+  if ('IntersectionObserver' in window) {
+    const observer = new IntersectionObserver((entries, obs) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+          obs.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.1 });
+
+    fadeElements.forEach(el => observer.observe(el));
+  } else {
+    // Fallback caso o navegador não suporte Observer
+    fadeElements.forEach(el => el.classList.add('visible'));
+  }
+
+  // ── 3. DYNAMIC REPOSITORIES LOAD (repos.json) ──
+  const reposGrid = document.getElementById('repos-grid');
+  if (reposGrid) {
+    fetch('repos.json')
+      .then(response => {
+        if (!response.ok) throw new Error('repos.json not found');
+        return response.json();
+      })
+      .then(repos => {
+        if (!Array.isArray(repos) || repos.length === 0) return;
+        
+        reposGrid.innerHTML = repos.map(repo => `
+          <a href="${repo.html_url}" target="_blank" class="repo-card fade-up visible">
+            <div class="repo-header">
+              <span class="repo-name">${repo.name}</span>
+            </div>
+            <p class="repo-desc">${repo.description || 'No description provided.'}</p>
+            <div class="repo-meta">
+              ${repo.language ? `<span><span class="lang-dot"></span>${repo.language}</span>` : ''}
+              <span>★ ${repo.stargazers_count || 0}</span>
+            </div>
+          </a>
+        `).join('');
+      })
+      .catch(err => {
+        console.log('repos.json load info:', err.message);
+      });
   }
 });
