@@ -1,5 +1,5 @@
 document.addEventListener('DOMContentLoaded', () => {
-  // ── 1. THEME TOGGLE & PERSISTENCE ──
+  // ── 1. THEME TOGGLE & PERSISTENCE (Não faz fetch nem recarrega repos) ──
   const themeToggleBtn = document.getElementById('theme-toggle');
   const html = document.documentElement;
 
@@ -7,7 +7,7 @@ document.addEventListener('DOMContentLoaded', () => {
   try {
     savedTheme = localStorage.getItem('theme');
   } catch (e) {
-    console.warn('localStorage is unavailable:', e);
+    console.warn('localStorage indisponível:', e);
   }
 
   const systemPrefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
@@ -36,42 +36,28 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  // ── 2. SCROLL ANIMATION OBSERVER (.fade-up) ──
-  const fadeElements = document.querySelectorAll('.fade-up');
-  
-  if ('IntersectionObserver' in window) {
-    const observer = new IntersectionObserver((entries, obs) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add('visible');
-          obs.unobserve(entry.target);
-        }
-      });
-    }, { threshold: 0.1 });
-
-    fadeElements.forEach(el => observer.observe(el));
-  } else {
-    // Fallback caso o navegador não suporte Observer
-    fadeElements.forEach(el => el.classList.add('visible'));
-  }
-
-  // ── 3. DYNAMIC REPOSITORIES LOAD (repos.json) ──
+  // ── 2. DYNAMIC REPOSITORIES LOAD (Executa EXATAMENTE UMA VEZ no carregamento) ──
   const reposGrid = document.getElementById('repos-grid');
   if (reposGrid) {
-    fetch('repos.json')
+    fetch('https://api.github.com/users/ecanalle/repos?sort=updated&per_page=6')
       .then(response => {
-        if (!response.ok) throw new Error('repos.json not found');
+        if (!response.ok) throw new Error('Erro na API do GitHub');
         return response.json();
       })
       .then(repos => {
-        if (!Array.isArray(repos) || repos.length === 0) return;
-        
-        reposGrid.innerHTML = repos.map(repo => `
-          <a href="${repo.html_url}" target="_blank" class="repo-card fade-up visible">
+        const ownRepos = repos.filter(repo => !repo.fork);
+
+        if (ownRepos.length === 0) {
+          reposGrid.innerHTML = '<p>Nenhum repositório público encontrado.</p>';
+          return;
+        }
+
+        reposGrid.innerHTML = ownRepos.map(repo => `
+          <a href="${repo.html_url}" target="_blank" class="repo-card">
             <div class="repo-header">
               <span class="repo-name">${repo.name}</span>
             </div>
-            <p class="repo-desc">${repo.description || 'No description provided.'}</p>
+            <p class="repo-desc">${repo.description || 'Sem descrição informada.'}</p>
             <div class="repo-meta">
               ${repo.language ? `<span><span class="lang-dot"></span>${repo.language}</span>` : ''}
               <span>★ ${repo.stargazers_count || 0}</span>
@@ -80,7 +66,9 @@ document.addEventListener('DOMContentLoaded', () => {
         `).join('');
       })
       .catch(err => {
-        console.log('repos.json load info:', err.message);
+        console.warn('Erro ao carregar repositórios:', err);
+        reposGrid.innerHTML = '<p>Não foi possível carregar os repositórios no momento.</p>';
       });
   }
+});
 });
